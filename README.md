@@ -13,6 +13,7 @@ some project images:
 
 ![build](https://github.com/mchilli/pibox/blob/master/img/build.png?raw=true){:width="100px"}
 ![complete](https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true){:width="100px"}
+<img src="https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true" width="100">
 
 special thanks to this libraries I used in this project:
 
