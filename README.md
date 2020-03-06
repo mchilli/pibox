@@ -10,8 +10,8 @@ a Raspberry Pi Zero, a rotary encoder, a 16x2 LCD display and build all together
 speaker that I still had in my basement.
 
 some project images:
-![build](https://github.com/mchilli/pibox/blob/master/img/build.png?raw=true =150x)
-![complete](https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true =150x)
+![build](https://github.com/mchilli/pibox/blob/master/img/build.png?raw=true | width=100)
+![complete](https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true | width=100)
 
 special thanks to this libraries I used in this project:
 
