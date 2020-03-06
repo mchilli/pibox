@@ -1,0 +1,45 @@
+{
+    "dir" : {
+        "content" : {
+            "Öffnen" : {
+                "content" : "lcd.osm.create_local_files_menu"
+            },
+            "Abspielen" : {
+                "content" : "mp.new_tracklist"
+            },
+            "Einreihen" : {
+                "content" : "mp.parse_url"
+            },
+            "Zufall" : {
+                "content" : "mp.add_randomly"
+            }
+        }
+    },
+    "file" : {
+        "content" : {
+            "Abspielen" : {
+                "content" : "mp.new_tracklist"
+            },
+            "Einreihen" : {
+                "content" : "mp.parse_url"
+            }
+        }
+    },
+    "playlist" : {
+        "content" : {
+            "Abspielen" : {
+                "content" : "mp.new_tracklist"
+            },
+            "Einreihen" : {
+                "content" : "mp.parse_url"
+            }
+        }
+    },
+    "radio" : {
+        "content" : {
+            "Abspielen" : {
+                "content" : "mp.new_tracklist"
+            }
+        }
+    }
+}

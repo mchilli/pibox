@@ -1,0 +1,15 @@
+[Unit]
+Description=PiBox Media Player
+After=multi-user.target
+
+[Service]
+User=pi
+Type=simple
+ExecStart=/home/pi/PiBox3/pibox.py
+ExecStop=/bin/kill -TERM $MAINPID
+ExecReload=/bin/kill -TERM $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

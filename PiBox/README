@@ -1,0 +1,141 @@
+######################################
+Instructions to use and other helpers:
+######################################
+
+
+
+- first of all update everthing:
+
+	sudo apt update && upgrade
+
+
+- if python3 is not already installed, use:
+
+	sudo apt install python3
+
+
+- vlc player is needed in this script, use:
+
+    sudo apt install vlc
+
+
+- to enable SSH and I2C(for display), use:
+
+	sudo raspi-config
+
+
+# this is only for using a "I2C display":
+
+    - add following lines at the bottom of /etc/modules:
+
+        sudo nano /etc/modules
+
+        	i2c-bcm2708
+        	i2c-dev
+
+    - install necessary I2C tools:
+
+        sudo apt-get install python3-smbus i2c-tools
+
+
+# this is only for using a "rotary encoder":
+
+    - the script need the python3 gpio lib, if not already installed, use:
+
+            sudo apt-get install python3-rpi.gpio
+
+
+- reboot
+
+
+# this is only for using a "I2C display":
+
+    - test I2C connection and find out the display adress:
+
+    	sudo i2cdetect -y 1
+
+
+# this is only for using a "HifiBerry Mini-Amp":
+
+    - make the following changes in /boot/config.txt:
+
+        sudo nano /boot/config.text
+
+            #dtparam=audio=on //comment out
+        	dtoverlay=hifiberry-dac //add
+
+
+# this is only for using a "mono output":
+
+    - create /etc/asound.conf and add the following lines:
+
+        sudo nano /etc/asound.conf
+
+        	pcm.card1 {
+        	  type hw
+        	  card 0
+        	}
+
+        	ctl.card1 {
+        	  type hw
+        	  card 0
+        	}
+
+        	pcm.monocard {
+        	  slave.pcm card1
+        	  slave.channels 2
+        	  type route
+        	  ttable {
+        		0.0 0.5
+        		1.0 0.5
+        		0.1 0
+        		1.1 0
+        	  }
+        	}
+
+        	ctl.monocard {
+        	  type hw
+        	  card 0
+        	}
+
+        	pcm.!default monocard
+
+
+# this is only for using "nas support":
+
+    - create mount point for nas dir. example:
+
+        sudo mkdir /mnt/nas_drive/music
+
+    - add following to /etc/fstab for automount. example:
+
+        sudo nano /etc/fstab
+
+			for samba:
+
+            //YourNASIpAdress/music /path/to/PiBox/home/Music cifs noauto,nofail,x-systemd.automount,x-systemd.idle-timeout=60,vers=3.0,username=****,password=****
+
+			for nfs:
+
+			YourNASIpAdress:/volume1/music /mnt/nas_drive/music nfs noauto,nofail,x-systemd.automount,x-systemd.idle-timeout=60,rw 0 0
+
+	- create a symlink in the pibox home dir. example:
+
+		ln -s -T /mnt/diskstation/music /path/to/PiBox/home/Music
+
+    - if there a radio folder, create a symlink in the pibox home dir. example:
+
+        ln -s -T /mnt/diskstation/music/.Radio /path/to/PiBox/home/Radio
+
+
+# this is only for using "usb automount":
+
+    - install usbmount and create a symlink in the pibox home dir
+
+        sudo apt install usbmount
+        ln -s -T /media/usb /path/to/PiBox/home/USB
+
+
+- for autostart, use:
+
+    sudo systemctl enable /path/to/PiBox/etc/pibox.service

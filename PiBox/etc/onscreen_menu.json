@@ -1,0 +1,56 @@
+{
+    "Dateien" : {
+        "content" : "lcd.show_local_files"
+    },
+    "Wiedergabe" : {
+        "content" : {
+            "Abspielen" : {
+                "content" : "mp.toggle_pause"
+            },
+            "Stop" : {
+                "content" : "mp.fake_stop"
+            },
+            "Nächstes" : {
+                "content" : "mp.next"
+            },
+            "Vorheriges" : {
+                "content" : "mp.previous"
+            },
+            "Modus" : {
+                "content" : "mp.toggle_playback_mode"
+            }
+        }
+    },
+    "Playlist" : {
+        "content" : {
+            "Neustarten" : {
+                "content" : "mp.restart_tracklist"
+            },
+            "Löschen" : {
+                "content" : "mp.remove_index"
+            },
+            "Alles löschen" : {
+                "content" : "mp.clear_tracklist"
+            }
+        }
+    },
+    "System" : {
+        "content" : {
+            "IP Adresse" : {
+                "content" : "sy.show_ip"
+            },
+            "Wifi Reconnect" : {
+                "content" : "sy.restart_wifi"
+            },
+            "Neu Laden" : {
+                "content" : "sy.restart_script"
+            },
+            "Neustarten" : {
+                "content" : "sy.system_reboot"
+            },
+            "Herunterfahren" : {
+                "content" : "sy.system_shutdown"
+            }
+        }
+    }
+}

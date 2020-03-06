@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PiBox API Developer Page</title>
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            :root{
+                --visibility: none;
+            }
+            body {
+                font-family: monospace;
+                color: #333;
+                margin: 0;
+            }
+            h3, p {
+                margin: 5px 0;
+            }
+            select, input {
+                width: -webkit-fill-available;
+                margin: 5px;
+                font-family: monospace;
+            }
+            button {
+                margin: 5px;
+            }
+            textarea {
+                min-width: 500px;
+                white-space: pre;
+            }
+            #body {
+                display: grid;
+                width: min-content;
+                background-color: #eee;
+                margin: 20px auto;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                grid-gap: 5px;
+                box-shadow: 2px 2px 0px 0px #999;
+            }
+            #prepare-data {
+                display: grid;
+                grid-template-columns: 70px auto;
+            }
+            .section {
+                background-color: #ddd;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 2px 2px 0px 0px #aaa;
+            }
+            .exdata {
+                display: var(--visibility);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="body">
+            <h3>PiBox API Developer Page</h3>
+            <div class="section">
+                <h3>Command Request:</h3>
+                <select class="" name="commands">
+                    <option value="player_play">play</option>
+                    <option value="player_pause">pause</option>
+                    <option value="player_toggle_pause">toggle play / pause</option>
+                    <option value="player_stop">stop</option>
+                    <option value="player_next">next</option>
+                    <option value="player_previous">previous</option>
+                    <option value="player_playback_mode">toggle playback mode</option>
+                    <option value="player_get_current">get current</option>
+                    <option value="player_set_position"
+                        data="number" info="position between 0.0 and 1.0" default=0.0 min=0 max=1 step=0.01>
+                            set position ...</option>
+                    <option value="player_volume_up">volume up</option>
+                    <option value="player_volume_down">volume down</option>
+                    <option value="player_volume_mute">volume mute</option>
+                    <option value="player_volume_get">get volume</option>
+                    <option value="player_volume_set"
+                        data="number" info="volume in %" default=30 min=0 max=100>
+                            set volume ...</option>
+                    <option value="tracklist_get">get tracklist</option>
+                    <option value="tracklist_play_new"
+                        data="text" info="absolute path of file/folder" default="/home/pi/">
+                            new tracklist ...</option>
+                    <option value="tracklist_add"
+                        data="text" info="absolute path of file/folder" default="/home/pi/">
+                            add to tracklist ...</option>
+                    <option value="tracklist_add_random"
+                        data="text" info="absolute path of file/folder" default="/home/pi/"
+                        data2="number" info2="number of tracks" default2=5 min2=0 max2=10>
+                            random add to tracklist ...</option>
+                    <option value="tracklist_play_index"
+                        data="number" info="index number (zero-based)" default=0 min=0>
+                            play index ...</option>
+                    <option value="tracklist_remove_current">remove current index</option>
+                    <option value="tracklist_remove_index"
+                        data="number" info="index number (zero-based)" default=0 min=0>
+                            remove index ...</option>
+                    <option value="tracklist_clear">clear tracklist</option>
+                </select>
+                <p class="exdata">Additional Data:</p>
+                <button type="button" name="send">POST</button>
+            </div>
+            <div class="section">
+                <h3>Prepared URL, Header and Payload:</h3>
+                <div id="prepare-data">
+                    <p>URL:</p>
+                    <p name="url"></p>
+                    <p>Header:</p>
+                    <p>Content-Type: application/json</p>
+                    <p>Payload:</p>
+                    <p name="request"></p>
+                </div>
+            </div>
+            <div class="section">
+                <h3>Command Response:</h3>
+                <textarea cols=60 rows=20 name="result" readonly></textarea>
+            </div>
+        </div>
+        <script>
+            // declare DOM Elements
+            var root = document.documentElement;
+            var result = document.querySelector('textarea[name="result"]');
+            var commands = document.querySelector('select[name="commands"]');
+            var exdata = document.querySelector('p[class="exdata"]');
+            var btnsend = document.querySelector('button[name="send"]');
+            var url = document.querySelector('p[name="url"]');
+            var request = document.querySelector('p[name="request"]');
+            // register Event listener for DOM Elements
+            commands.addEventListener('change', checkSelection);
+            btnsend.addEventListener('click', sendCommand);
+            document.addEventListener('keyup', function(event) {
+                if (event.keyCode === 13) { // send with ENTER
+                    btnsend.click();
+                    return;
+                }
+            });
+            // prettify JSON string
+            function prettyPrint(json) {
+                var obj = JSON.parse(json);
+                var pretty = JSON.stringify(obj, undefined, 2);
+                return pretty;
+            }
+            // convert command to string before sending
+            function prepareData() {
+                var postdata = {"command": commands.value}
+                if (exdata.childNodes.length > 2){
+                    postdata["data"] = [];
+                    for (var i = 1; i < exdata.childNodes.length; i++) {
+                        var value = exdata.childNodes[i].value;
+                        if (value != ''){
+                            postdata["data"][i-1] = value;
+                        }
+                    }
+                } else if (exdata.childNodes.length == 2){
+                    var value = exdata.childNodes[1].value;
+                    if (value != ''){
+                        postdata["data"] = value;
+                    }
+                }
+                return JSON.stringify(postdata);
+            }
+            // send request string over ajax
+            function sendCommand() {
+                var option = commands.options[commands.selectedIndex];
+                if (option.hasAttribute('data') && exdata.value == ''){
+                    return alert('command need extra data!')
+                }
+                var postdata = prepareData();
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        result.value = prettyPrint(this.responseText);
+                    }
+                };
+                xhttp.open('POST', '/api', true);
+                xhttp.setRequestHeader('Content-Type', 'application/json');
+                xhttp.send(postdata);
+            }
+            // check for changes on command selection
+            function checkSelection() {
+                var option = commands.options[commands.selectedIndex];
+                root.style.setProperty('--visibility', 'none');
+                while (exdata.childNodes.length > 1) {
+                    exdata.removeChild(exdata.childNodes[1])
+                }
+                for (var i = 0; i < 3; i++) {
+                    if (i == 0) {i = ''}
+                    if (option.hasAttribute('data'+i)){
+                        var exinput = document.createElement("INPUT");
+                        exinput.addEventListener('input', checkInput);
+                        exinput.setAttribute('type', option.getAttribute('data'+i));
+                        if (option.hasAttribute('default'+i)){
+                            exinput.value = option.getAttribute('default'+i);
+                        }
+                        if (option.hasAttribute('info'+i)){
+                            exinput.setAttribute('title', option.getAttribute('info'+i));
+                        }
+                        if (option.hasAttribute('min'+i)){
+                            exinput.setAttribute('min', option.getAttribute('min'+i));
+                        }
+                        if (option.hasAttribute('max'+i)){
+                            exinput.setAttribute('max', option.getAttribute('max'+i));
+                        }
+                        if (option.hasAttribute('step'+i)){
+                            exinput.setAttribute('step', option.getAttribute('step'+i));
+                        }
+                        exdata.appendChild(exinput);
+                        root.style.setProperty('--visibility', 'unset');
+                    }
+                }
+                updatePostdataString()
+            }
+            // check for changes on extra data input
+            function checkInput() {
+                var option = commands.options[commands.selectedIndex];
+                for (var i = 1; i < exdata.childNodes.length; i++) {
+                    var exinput = exdata.childNodes[i];
+                    if (exinput.hasAttribute('min') && exinput.hasAttribute('max')){
+                        var val = parseFloat(exinput.value);
+                        var min = parseFloat(exinput.getAttribute('min'));
+                        var max = parseFloat(exinput.getAttribute('max'));
+                        if (val < min){
+                            exinput.value = min;
+                        } else if (val > max) {
+                            exinput.value = max;
+                        };
+                    }
+                }
+                updatePostdataString()
+            }
+            // update the prepare postdata strings
+            function updatePostdataString() {
+                request.innerHTML = prepareData();
+            }
+            url.innerHTML = document.URL.replace('dev', 'api');
+            checkSelection();
+        </script>
+    </body>
+</html>
