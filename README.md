@@ -10,16 +10,20 @@ a Raspberry Pi Zero, a rotary encoder, a 16x2 LCD display and build all together
 speaker that I still had in my basement.
 
 some project images:
-![build](https://github.com/mchilli/pibox/blob/master/img/build.png?raw=true | width=100)
-![complete](https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true | width=100)
+
+![build](https://github.com/mchilli/pibox/blob/master/img/build.png?raw=true){:width="100px"}
+![complete](https://github.com/mchilli/pibox/blob/master/img/complete.png?raw=true){:width="100px"}
 
 special thanks to this libraries I used in this project:
 
-	[Python vlc bindings](https://github.com/oaubert/python-vlc)
-	[Python websocket-server](https://github.com/Pithikos/python-websocket-server)
+[Python vlc bindings](https://github.com/oaubert/python-vlc)
 
-	[jQuery](https://jquery.com/)
-    [jQuery contextMenu](https://swisnl.github.io/jQuery-contextMenu/)
-	[iro.js Colorpicker](https://iro.js.org/)
+[Python websocket-server](https://github.com/Pithikos/python-websocket-server)
 
-	[Font Awesome](https://fontawesome.com/)
+[jQuery](https://jquery.com/)
+
+[jQuery contextMenu](https://swisnl.github.io/jQuery-contextMenu/)
+
+[iro.js Colorpicker](https://iro.js.org/)
+
+[Font Awesome](https://fontawesome.com/)
