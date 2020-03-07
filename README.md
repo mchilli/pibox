@@ -1,8 +1,11 @@
-# PiBox <img src="https://github.com/mchilli/pibox/blob/master/images/logo.png?raw=true" height="80">
+# PiBox
+
+<img src="https://github.com/mchilli/pibox/blob/master/images/logo.png?raw=true" height="80">
+
 
 PiBox is a music player for a local device, controlled over the network with the WebUI or even a rotary encoder with or without a 16x2 lcd display, directly on a headless device. Originally designed only for a Raspberry Pi it can be used (as far as I know) on every debian based operating system, as a nice remote controlled music player :sunglasses:.
 
-##### The WebUI:
+##### Preview:
 
 <img src="https://github.com/mchilli/pibox/blob/master/images/webui001.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/webui002.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/webui003.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/webui004.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/webui005.png?raw=true" height="150">
 
@@ -56,7 +59,7 @@ On first start PiBox use the default values, so it try to use the **system wide 
 
 The default port for the WebUI is **8080** it can be changed in config, but remember ports below 1024 require root privileges.
 
-**Start PiBox with:**
+Start PiBox with:
 
 	/path/to/PiBox/pibox.py
 
@@ -67,6 +70,8 @@ Check the WebUI under:
 ##### Theming:
 
 There are two diffrent type of themes, a global and a local. The global theme will used on every device as the default theme and the local theme can be set per device and will be stored in the browsers local storage (like a cookie).
+
+------------
 
 #### special thanks for this libraries I used in this project:
 
