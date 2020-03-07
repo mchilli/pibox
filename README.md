@@ -10,7 +10,7 @@ PiBox is a music player for a local device, controlled over the network with the
 
 The project start early 2017 and with this I started learn to code python (thats the point why there are some old comments in the main python script :innocent:).The idea behind was to give my kids a device where they can listen to some audiobooks for childrens. So I buyed a Raspberry Pi Zero, a rotary encoder, a 16x2 LCD display, a HiFiBerry MiniAMP and build all together in an old speaker that I still had in my basement.
 
-Here some project images, how the PiBoxes look like:\
+Here are some old project images, how the PiBoxes look like:\
 <img src="https://github.com/mchilli/pibox/blob/master/images/build.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/complete.png?raw=true" height="150"> <img src="https://github.com/mchilli/pibox/blob/master/images/display.png?raw=true" height="150">
 
 #### Dependecies:
