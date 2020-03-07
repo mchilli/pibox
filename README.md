@@ -1,4 +1,4 @@
-# PiBox
+# PiBox <img src="https://github.com/mchilli/pibox/blob/master/images/logo.png?raw=true" height="80">
 
 PiBox is a music player for a local device, controlled over the network with the WebUI or even a rotary encoder with or without a 16x2 lcd display, directly on a headless device. Originally designed only for a Raspberry Pi it can be used (as far as I know) on every debian based operating system, as a nice remote controlled music player :sunglasses:.
 
