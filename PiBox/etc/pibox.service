@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 User=pi
 Type=simple
-ExecStart=/home/pi/PiBox3/pibox.py
+ExecStart=/path/to/PiBox/pibox.py
 ExecStop=/bin/kill -TERM $MAINPID
 ExecReload=/bin/kill -TERM $MAINPID
 KillMode=process
