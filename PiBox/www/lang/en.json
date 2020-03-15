@@ -74,7 +74,7 @@
         "scriptReload": "reload script",
         "systemReboot": "reboot system",
         "systemShutdown": "restart system",
-        "feedback": "telegram feedback",
+        "feedback": "feedback",
         "sortListNum": "sort by number",
         "sortListAlpha": "sort by name",
         "clearList": "clear tracklist",
