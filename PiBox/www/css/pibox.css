@@ -484,6 +484,7 @@ a {
     grid-row: 2;
     grid-column: 1;
     height: 100%;
+    padding-top: 1px;
     color: #000;
     text-align: center;
 	word-break: break-word;
