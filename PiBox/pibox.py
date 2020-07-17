@@ -541,7 +541,7 @@ class MediaPlayer():
     """
     def __init__(self, default_volume):
         # self.vlc = vlclib.Instance(["-A", "alsa", "--no-video"])
-        self.vlc = vlclib.Instance(["-A", "alsa", "--no-video", "--quiet"])
+        self.vlc = vlclib.Instance(["--no-video", "--quiet"])
         self.mp = self.vlc.media_player_new()
         self.ml = self.vlc.media_list_new()
         self.mlp = self.vlc.media_list_player_new()
