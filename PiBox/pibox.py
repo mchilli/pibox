@@ -198,7 +198,7 @@ class HTTPServer(threading.Thread):
         """ handle the received get request
         """
         if request.path == "/defaults": # return the default config
-            return json.dumps({'own_ip': sy.get_ip(),
+            return json.dumps({'own_ip': 'localhost' if request.client_address[0] == '127.0.0.1' else sy.get_ip(),
                                'language': config['language'],
                                'base_path': default['pibox_home_dir'],
                                'websocket_port': config['websocket_port'],
