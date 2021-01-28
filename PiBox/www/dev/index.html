@@ -88,7 +88,8 @@
                             add to tracklist ...</option>
                     <option value="tracklist_add_random"
                         data="text" info="absolute path of file/folder" default="/home/pi/"
-                        data2="number" info2="number of tracks" default2=5 min2=0 max2=10>
+                        data2="number" info2="number of tracks" default2=5 min2=0 max2=10
+                        data3="number" info3="delete current tracklist" default3=1 min3=0 max3=1>
                             random add to tracklist ...</option>
                     <option value="tracklist_play_index"
                         data="number" info="index number (zero-based)" default=0 min=0>
@@ -185,7 +186,7 @@
                 while (exdata.childNodes.length > 1) {
                     exdata.removeChild(exdata.childNodes[1])
                 }
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i <= 3; i++) {
                     if (i == 0) {i = ''}
                     if (option.hasAttribute('data'+i)){
                         var exinput = document.createElement("INPUT");

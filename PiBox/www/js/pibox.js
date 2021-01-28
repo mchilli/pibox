@@ -3,7 +3,7 @@
  * Author: MCHilli
 */
 
-var vers = "2.2.0"
+var vers = "2.2.1"
 
 // FUNCTIONS //
 function declareGlobVars() {
@@ -558,16 +558,29 @@ function createRandomDialog(dir) {
                 }
             });
         },
+        labelok: getTranslation('context.play'),
         onok: function(e) {
             let count = $(e.data.dialog.DOM.content).find('.counter').html();
             if (count > 0) {
-                let data = [dir, parseInt(count)];
+                let data = [dir, parseInt(count), true];
                 sendCmd("tracklist_add_random", data);
             }
         },
         oncancel: function(e) {
             return true;
-        }
+        },
+        buttons: [
+            {
+                label: getTranslation('context.queue'),
+                function: function(e) {
+                    let count = $(e.data.dialog.DOM.content).find('.counter').html();
+                    if (count > 0) {
+                        let data = [dir, parseInt(count), false];
+                        sendCmd("tracklist_add_random", data);
+                    }
+                }
+            }
+        ]
     });
 }
 function createThemeDialog() {
@@ -889,7 +902,7 @@ function searchDirectory(search) {
     if (searchDOM.hasClass('slidedown')) {
         searchDOM.removeClass('slidedown');
     }
-    directorySearch.search(search);
+    directorySearch.fuzzySearch(search);
     if (directoryContent[0].properties.type == "return") {
         directoryDOM.prepend(directoryContent[0]);
     }

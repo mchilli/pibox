@@ -32,7 +32,7 @@
 # to reading the log, use:
 #   sudo journalctl -u pibox.service | tail
 
-__version__ = "3.4.8"
+__version__ = "3.4.9"
 
 import os
 import sys
@@ -309,8 +309,8 @@ class HTTPServer(threading.Thread):
                 mp.parse_url(data)
                 req['response'] = {'tracklist': mp.get_tracklist()}
         elif cmd == "tracklist_add_random":
-            if "data" in locals() and len(data) == 2:
-                mp.add_randomly(data[0], int(data[1]))
+            if "data" in locals() and len(data) == 3:
+                mp.add_randomly(data[0], int(data[1]), bool(int(data[2])))
                 req['response'] = {'tracklist': mp.get_tracklist()}
         elif cmd == "tracklist_play_index":
             if "data" in locals():
@@ -491,7 +491,7 @@ class WSServer(threading.Thread):
                 req["data"] = "toast.cantAdd"
         elif cmd == "tracklist_add_random":
             lcd.lcd_backlight_active()
-            if mp.add_randomly(data[0], data[1]):
+            if mp.add_randomly(data[0], data[1], data[2]):
                 req["cmd"] = "toast"
                 req["data"] = ("toast.addRandom", data[1], sy.beauty_path(data[0]))
             else:
@@ -1139,11 +1139,12 @@ class MediaPlayer():
         self.play()
         return True
 
-    def add_randomly(self, url, count=5):
+    def add_randomly(self, url, count=5, clean=True):
         """ adds a count of random files to tracklist.
                 args:
                     url(str): the complete url to a directory, to shuffle.
                     count(int): the number of files to add.
+                    clean(bool): clean the tracklist before add
         """
         filelist = []
         for root, directories, files in os.walk(url):
@@ -1153,8 +1154,9 @@ class MediaPlayer():
             # break # uncomment break, for not recursive randomly add
         if len(filelist) == 0:
             return False
-        self.fake_stop()
-        self._clean_tracklist()
+        if clean:
+            self.fake_stop()
+            self._clean_tracklist()
         self.shuffle_list = []
         random.shuffle(filelist)
         if count > len(filelist):
@@ -1166,6 +1168,7 @@ class MediaPlayer():
         self.update_tracklist()
         if not lcd.menu_shown():
             lcd.lcd_display_string("%s" % mp.get_title(), 2, 1)
+        if clean: self.play()
         return True
 
     def remove_index(self, index=-1, update=True):
