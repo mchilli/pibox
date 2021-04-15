@@ -999,11 +999,18 @@ class MediaPlayer():
             wss.send_to_all({'cmd': "volume",
                              'data': self.get_volume()})
 
-    def sw_get_volume(self):
+    def sw_get_volume(self, advanced=0):
         """ get current software audio volume.
+            args:
+                advanced(bool): return list [volume, state]
             return: the software volume in percents (0 = mute, 100 = nominal / 0dB).
         """
-        return self.mp.audio_get_volume()
+        volume = self.mp.audio_get_volume()
+        state = "off" if self.mute else "on"
+        if advanced:
+            return [volume, state]
+        else:
+            return volume
 
     def sw_set_volume(self, volume):
         """ set software audio volume.
