@@ -5,20 +5,20 @@
 
 /* GLOBAL */
 :root {
-    --version: "2.0.5";
+    --version: '2.0.6';
     --primary-color: #000000;
-    --secondary-color: #FFFFFF;
+    --secondary-color: #ffffff;
     --hover-color: #808080;
     --box-shadow-color: rgba(0, 0, 0, 0.5);
     --box-shadow: 0px 0px 5px var(--box-shadow-color);
     --overlay-background: rgba(128, 128, 128, 0.2);
-	--file-marker: hidden;
-	--tracklist-marker: hidden;
+    --file-marker: hidden;
+    --tracklist-marker: hidden;
     --directory-gap: 4px;
 }
 html {
-	font-family: consolas, monospace, monospace;
-	font-size: 12px;
+    font-family: consolas, monospace, monospace;
+    font-size: 12px;
     line-height: 14px;
 }
 body {
@@ -29,12 +29,12 @@ a {
     color: inherit;
 }
 .invisible {
-	visibility: hidden;
+    visibility: hidden;
     opacity: 0;
 }
 .no-select {
     user-select: none;
-    -o-user-select:none;
+    -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -53,7 +53,7 @@ a {
 .transition,
 .context-menu-item,
 .context-menu-hover:before {
-    transition: background .2s, color .2s, bottom .2s, right .2s !important;
+    transition: background 0.2s, color 0.2s, bottom 0.2s, right 0.2s !important;
 }
 .fa-2x {
     font-size: 32px;
@@ -64,7 +64,7 @@ a {
 
 /* HIDE CHROME SCROLLBAR */
 ::-webkit-scrollbar {
-	width: 0px;
+    width: 0px;
 }
 
 /* LAYOUT */
@@ -87,12 +87,12 @@ a {
     margin-left: 50px;
     background-color: var(--secondary-color);
     z-index: 10;
-    transition: .5s;
+    transition: 0.5s;
 }
 #loading.fullscreen {
     margin-top: 0;
     margin-left: 0;
-	z-index: 30;
+    z-index: 30;
 }
 #loading .loader {
     color: var(--primary-color);
@@ -122,36 +122,56 @@ a {
 #topbar {
     grid-column: 2;
     grid-row: 1;
-	display: grid;
-	grid-template-columns: fit-content(20px) fit-content(20px) auto fit-content(40px);
-	grid-template-rows: auto auto;
-	place-items: center;
+    display: grid;
+    grid-template-columns: fit-content(20px) fit-content(20px) auto fit-content(40px);
+    grid-template-rows: auto auto;
+    place-items: center;
     height: 50px;
     min-width: 0;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-	padding: 0 5px;
+    padding: 0 5px;
     z-index: 20;
 }
 #topbar .position {
-	grid-row: 1;
+    grid-row: 1;
     grid-column: 1 / 3;
     text-align: center;
-	padding-right: 5px;
+    padding-right: 5px;
 }
 #topbar .progress {
-	grid-row: 1;
+    grid-row: 1;
     grid-column: 3;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     width: 100%;
     height: 15px;
-    background: linear-gradient(left, var(--secondary-color) var(--progress), var(--primary-color) var(--progress));
-    background: -ms-linear-gradient(left, var(--secondary-color) var(--progress), var(--primary-color) var(--progress));
-    background: -o-linear-gradient(left, var(--secondary-color) var(--progress), var(--primary-color) var(--progress));
-    background: -moz-linear-gradient(left, var(--secondary-color) var(--progress), var(--primary-color) var(--progress));
-    background: -webkit-linear-gradient(left, var(--secondary-color) var(--progress), var(--primary-color) var(--progress));
+    background: linear-gradient(
+        left,
+        var(--secondary-color) var(--progress),
+        var(--primary-color) var(--progress)
+    );
+    background: -ms-linear-gradient(
+        left,
+        var(--secondary-color) var(--progress),
+        var(--primary-color) var(--progress)
+    );
+    background: -o-linear-gradient(
+        left,
+        var(--secondary-color) var(--progress),
+        var(--primary-color) var(--progress)
+    );
+    background: -moz-linear-gradient(
+        left,
+        var(--secondary-color) var(--progress),
+        var(--primary-color) var(--progress)
+    );
+    background: -webkit-linear-gradient(
+        left,
+        var(--secondary-color) var(--progress),
+        var(--primary-color) var(--progress)
+    );
     border: 2px solid var(--primary-color);
     box-sizing: border-box;
     outline: none;
@@ -159,11 +179,17 @@ a {
     padding: 0;
 }
 #topbar .progress.infinite {
-    background: repeating-linear-gradient(135deg, transparent, transparent 4px, var(--secondary-color) 4px, var(--secondary-color) 10px);
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 4px,
+        var(--secondary-color) 4px,
+        var(--secondary-color) 10px
+    );
     animation: sliding 2s linear infinite;
 }
 #topbar .progress::-webkit-slider-thumb::before {
-    content: attr(value) "%";
+    content: attr(value) '%';
     display: block;
 }
 #topbar .progress::-webkit-slider-thumb {
@@ -187,13 +213,13 @@ a {
     visibility: hidden;
 }
 #topbar .duration {
-	grid-row: 1;
+    grid-row: 1;
     grid-column: 4;
     text-align: center;
-	padding-left: 5px;
+    padding-left: 5px;
 }
 #topbar .icon {
-	grid-row: 2;
+    grid-row: 2;
     grid-column: 1 / 2;
     width: 20px;
 }
@@ -242,7 +268,7 @@ a {
     display: grid;
     place-items: center;
     height: 50px;
-	width: 50px;
+    width: 50px;
     touch-action: manipulation;
 }
 #sidebar .button i {
@@ -271,7 +297,7 @@ a {
 }
 #sidebar .button .subbar {
     display: flex;
-	flex-wrap: wrap;
+    flex-wrap: wrap;
     position: absolute;
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -314,53 +340,53 @@ a {
     padding: 5px 8px 5px 10px;
     font-weight: bold;
     overflow: hidden;
-	text-align: center;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
     flex: 1;
 }
 #content .path .segment:first-child {
-	padding-left: 5px;
+    padding-left: 5px;
 }
 #content .path .segment:last-child {
-	padding-right: 5px;
+    padding-right: 5px;
 }
 #content .path .segment:not(:first-child)::before,
 #content .path .segment:not(:last-child)::after {
-    content: "";
+    content: '';
     top: 0;
     display: block;
     position: absolute;
-	transition: border-color .2s
+    transition: border-color 0.2s;
 }
 #content .path .segment:not(:first-child)::before {
-	left: 0;
+    left: 0;
     border-top: 12px solid var(--primary-color);
     border-bottom: 12px solid var(--primary-color);
     border-left: 5px solid var(--secondary-color);
 }
 #content .path .segment:not(:last-child)::after {
-	right: 0;
+    right: 0;
     border-top: 12px solid var(--secondary-color);
     border-bottom: 12px solid var(--secondary-color);
     border-left: 5px solid var(--primary-color);
 }
 #content .path .segment:hover::after {
-	border-left-color: var(--hover-color);
+    border-left-color: var(--hover-color);
 }
 #content .path .segment:not(:last-child):hover::before {
-	border-top-color: var(--hover-color);
-	border-bottom-color: var(--hover-color);
+    border-top-color: var(--hover-color);
+    border-bottom-color: var(--hover-color);
 }
-#content .path .segment .name::before{
+#content .path .segment .name::before {
     font-family: 'Font Awesome 5 Free';
-	font-weight: 900;
-    content: "\f07b";
+    font-weight: 900;
+    content: '\f07b';
     margin-right: 8px;
 }
-#content .path .segment:last-child .name::before{
-    content: "\f07c";
+#content .path .segment:last-child .name::before {
+    content: '\f07c';
 }
 #content .directory {
     list-style-type: none;
@@ -373,26 +399,26 @@ a {
     place-items: center;
 }
 #content .directory.scroll-top:before {
-    content: "";
+    content: '';
 }
 #content .directory.scroll-top .return {
     position: fixed;
     top: 30px;
     left: 30px;
-    transform: scale(0.75) translate(-15px , -22px) rotate(90deg);
-    transition: transform .2s linear;
+    transform: scale(0.75) translate(-15px, -22px) rotate(90deg);
+    transition: transform 0.2s linear;
 }
 #content .directory.scroll-top .return .name {
-	display: none;
+    display: none;
 }
 #content .directory.scroll-top .return .icon i {
-	background-color: var(--secondary-color);
+    background-color: var(--secondary-color);
     margin-left: -5px;
     border: 5.333px solid var(--secondary-color);
     border-radius: 50%;
     border-bottom-left-radius: 0;
     box-shadow: var(--box-shadow);
-    transition: box-shadow .1s .2s;
+    transition: box-shadow 0.1s 0.2s;
 }
 #content .directory .segment {
     flex: 1;
@@ -413,13 +439,13 @@ a {
     grid-column: 1;
     height: 100%;
     width: 80px;
-	color: var(--primary-color);
+    color: var(--primary-color);
     place-self: center;
     display: grid;
     place-items: center;
 }
 #content .directory .segment.dir .icon:hover i:before {
-	content: "\f07c";
+    content: '\f07c';
 }
 #content .directory .segment .mark {
     grid-row: 1;
@@ -436,7 +462,7 @@ a {
     outline: none;
 }
 #content .directory .segment .mark::before {
-    content: "";
+    content: '';
     display: block;
     width: 30px;
     height: 30px;
@@ -451,18 +477,18 @@ a {
     border-color: var(--hover-color);
 }
 #content .directory .segment .mark:checked::before {
-	font-family: 'Font Awesome 5 Free';
+    font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     font-size: 15px;
     text-align: center;
-    content: "\f00c";
-	color: var(--primary-color);
+    content: '\f00c';
+    color: var(--primary-color);
     display: grid;
     align-items: center;
-	transition: border-color .2s;
+    transition: border-color 0.2s;
 }
 #content .directory .segment .mark:checked:hover::before {
-	color: var(--hover-color);
+    color: var(--hover-color);
 }
 #content .directory .segment .badge {
     grid-row: 1;
@@ -487,8 +513,8 @@ a {
     padding-top: 1px;
     color: #000;
     text-align: center;
-	word-break: break-word;
-	overflow: hidden;
+    word-break: break-word;
+    overflow: hidden;
 }
 
 /* DIALOG */
@@ -501,7 +527,7 @@ a {
     display: grid;
     place-items: center;
     background-color: var(--overlay-background);
-    transition: .2s;
+    transition: 0.2s;
     z-index: 25;
 }
 #dialog .dialog {
@@ -613,16 +639,16 @@ a {
     border: 4px solid var(--secondary-color);
     border-radius: 50%;
     border-bottom-right-radius: 0;
-    transition: .2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     box-shadow: var(--box-shadow);
 }
 #search:hover {
-	margin-bottom: 0px !important;
-	margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-right: 0px !important;
     opacity: 1 !important;
 }
-#search.slidedown{
-	margin-bottom: -30px;
+#search.slidedown {
+    margin-bottom: -30px;
     margin-right: -30px;
     opacity: 0.2;
 }
@@ -660,7 +686,7 @@ a {
     grid-template-rows: min-content min-content auto;
     background-color: var(--secondary-color);
     overflow-y: hidden;
-    margin: 4px;
+    border: 4px solid var(--secondary-color);
     z-index: 15;
 }
 #tracklist .close {
@@ -720,42 +746,42 @@ a {
     scrollbar-width: none;
 }
 #tracklist .list .track {
-	position: relative;
+    position: relative;
     display: grid;
     grid-template-columns: 30px auto min-content;
     align-items: center;
     min-height: 30px;
-    color: #000;
+    color: var(--primary-color);
     text-align: start;
     touch-action: manipulation;
 }
 #tracklist .list .track:nth-child(odd) {
     background-color: var(--primary-color);
-    color: #FFF;
+    color: var(--secondary-color);
 }
 #tracklist .list .track.playing .title {
-	padding-left: 28px;
+    padding-left: 28px;
 }
 #tracklist .list .track.playing:before {
-	content: '';
-	box-sizing: border-box;
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	margin-left: 35px;
-	border-width: 8px 0 8px 12px;
-	border-style: solid;
-	border-color: transparent;
-	border-left-color: var(--primary-color);
-	animation: playing 1s linear infinite;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: 35px;
+    border-width: 8px 0 8px 12px;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: var(--primary-color);
+    animation: playing 1s linear infinite;
 }
 #tracklist .list .track:nth-child(odd).playing:before {
     border-left-color: #fff !important;
 }
 #tracklist .list .track.playing.paused:before {
-	border-style: double;
+    border-style: double;
     border-width: 0 0 0 16px;
-	animation: none;
+    animation: none;
 }
 #tracklist .list .track .index {
     text-align: right;
@@ -764,14 +790,14 @@ a {
     padding: 0 5px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 #tracklist .list .track .duration {
-	padding: 0 5px;
+    padding: 0 5px;
     text-align: center;
 }
 #tracklist .list .track .mark {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
     margin: 0;
     position: absolute;
     width: 100%;
@@ -782,24 +808,24 @@ a {
     visibility: var(--tracklist-marker);
 }
 #tracklist .list .track .mark:checked:before {
-    content: "\f2ed";
+    content: '\f2ed';
     width: 30px;
     height: 100%;
-	font-family: 'Font Awesome 5 Free';
-	font-weight: 900;
-	text-align: center;
-	background-color: var(--secondary-color);
-	color: var(--primary-color);
-	display: grid;
-	place-items: center;
-    transition: .2s
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: grid;
+    place-items: center;
+    transition: 0.2s;
 }
 #tracklist .list .track:nth-child(odd) .mark:checked:before {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 #tracklist .list .track .mark:checked:hover:before {
-	background-color: var(--hover-color);
+    background-color: var(--hover-color);
 }
 #tracklist .list .track .mark:checked:after {
     width: calc(100% - 30px);
@@ -809,11 +835,23 @@ a {
     /* opacity: 0.6; */
     top: 0;
     right: 0;
-    content: "";
-    background: repeating-linear-gradient(25deg, transparent, transparent 10px, var(--secondary-color) 10px, var(--secondary-color) 15px);
+    content: '';
+    background: repeating-linear-gradient(
+        25deg,
+        transparent,
+        transparent 10px,
+        var(--secondary-color) 10px,
+        var(--secondary-color) 15px
+    );
 }
 #tracklist .list .track:nth-child(odd) .mark:checked:after {
-    background: repeating-linear-gradient(155deg, transparent, transparent 10px, var(--primary-color) 10px, var(--primary-color) 15px);
+    background: repeating-linear-gradient(
+        155deg,
+        transparent,
+        transparent 10px,
+        var(--primary-color) 10px,
+        var(--primary-color) 15px
+    );
 }
 
 /* CONFIG */
@@ -869,15 +907,15 @@ a {
     align-items: center;
     text-align: right;
 }
-#config .list .setting input[type="text"],
-#config .list .setting input[type="number"] {
+#config .list .setting input[type='text'],
+#config .list .setting input[type='number'] {
     background-color: var(--secondary-color);
     color: #000;
     border: 1px solid var(--primary-color);
     padding: 0px;
 }
-#config .list .setting input[type="checkbox"] {
-	display: block;
+#config .list .setting input[type='checkbox'] {
+    display: block;
     -webkit-appearance: none;
     width: 40px;
     height: 20px;
@@ -886,29 +924,29 @@ a {
     border: 1px solid #aaa;
     margin: 0 auto;
     background-color: var(--secondary-color);
-    transition: background-color .2s linear;
-	cursor: pointer;
+    transition: background-color 0.2s linear;
+    cursor: pointer;
 }
-#config .list .setting input[type="checkbox"]::before {
-	width: 20px;
-	height: 20px;
-	border-radius: 30px;
-	background-color: var(--secondary-color);
-	display: block;
-	content: "";
-	float: left;
-	margin-right: 5px;
-	transition: margin 0.1s linear;
-	box-shadow: 0px 0px 0px 1px #aaa;
+#config .list .setting input[type='checkbox']::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 30px;
+    background-color: var(--secondary-color);
+    display: block;
+    content: '';
+    float: left;
+    margin-right: 5px;
+    transition: margin 0.1s linear;
+    box-shadow: 0px 0px 0px 1px #aaa;
 }
-#config .list .setting input[type="checkbox"]:checked{
-	background-color: var(--primary-color);
+#config .list .setting input[type='checkbox']:checked {
+    background-color: var(--primary-color);
 }
-#config .list .setting input[type="checkbox"]:checked::before {
-	margin-left: 20px;
+#config .list .setting input[type='checkbox']:checked::before {
+    margin-left: 20px;
 }
 #config .list .setting input:focus {
-	outline: none;
+    outline: none;
 }
 
 /* TOAST */
@@ -924,36 +962,44 @@ a {
     word-break: break-word;
     box-shadow: var(--box-shadow);
     z-index: 35;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 /* KEYFRAMES */
 @keyframes loading {
-	0%,
-	100% {
-		box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
-	}
-	12.5% {
-		box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-	}
-	25% {
-		box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-	}
-	37.5% {
-		box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
-	}
-	50% {
-		box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
-	}
-	62.5% {
-		box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
-	}
-	75% {
-		box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
-	}
-	87.5% {
-		box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
-	}
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
+            -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
+            -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
+            -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
 }
 @keyframes sliding {
     0% {
@@ -963,23 +1009,24 @@ a {
         background-position: 14px 0;
     }
 }
-}
+
 @keyframes scrolling {
     0% {
         transform: translateX(0px);
     }
-    33%, 100% {
+    33%,
+    100% {
         transform: translateX(-50%);
     }
 }
 @keyframes playing {
-	0% {
+    0% {
         margin-left: 35px;
     }
-	50% {
+    50% {
         margin-left: 42px;
     }
-	100% {
+    100% {
         margin-left: 35px;
     }
 }
@@ -1002,10 +1049,8 @@ a {
     font-size: 1em;
 }
 
-
 /* ANDROID PHONE DEVICES PORTRAIT*/
-@media (pointer: coarse) and (orientation: portrait),
-(max-width: 450px) {
+@media (pointer: coarse) and (orientation: portrait), (max-width: 450px) {
     :root {
         --directory-gap: 0px;
     }
@@ -1038,9 +1083,9 @@ a {
         grid-template-rows: 30px 30px;
     }
     .context-menu-item {
-        padding: .5em 2.5em;
+        padding: 0.5em 2.5em;
     }
-    .context-menu-item.context-menu-separator{
+    .context-menu-item.context-menu-separator {
         padding: 0;
     }
 }
@@ -1056,9 +1101,9 @@ a {
         font-size: 1.1rem;
     }
     .context-menu-item {
-        padding: .5em 2.5em;
+        padding: 0.5em 2.5em;
     }
-	.context-menu-item.context-menu-separator{
-		padding: 0;
-	}
+    .context-menu-item.context-menu-separator {
+        padding: 0;
+    }
 }
