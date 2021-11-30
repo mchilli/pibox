@@ -3,7 +3,7 @@
  * Author: MCHilli
 */
 
-var vers = "2.2.1"
+var vers = "2.2.2"
 
 // FUNCTIONS //
 function declareGlobVars() {
@@ -1504,15 +1504,12 @@ function attachEventListener() {
         let button = $(this);
         let subBar = button.children('.subbar');
         if (!subBar.is(":visible")) {
-            let options = {
-                "my": "left top-4",
-                "at": "right top",
-                "of": this
-            };
+            const top = button.offset().top - 4;
+            const left = button.width();
             let overlay = $('<div class="subbar-overlay" onclick="void(\'\');"></div>');
             button.before(overlay);
             button.removeClass('hover');
-            subBar.show().position(options);
+            subBar.show().offset({ top: top, left: left });
         }
     })
     .on('click', '.subbar-overlay', function() {
